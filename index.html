@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#faf7f2" />
+  <title>Wedding Invitation</title>
+  <style>
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:#d9d5d0;color:#514a44;font-family:Georgia,"Noto Serif TC","Microsoft JhengHei",serif}
+    button,input,select,textarea{font:inherit} button{cursor:pointer}.phone{position:relative;width:100%;max-width:430px;min-height:100vh;margin:auto;background:#faf7f2;overflow:hidden;box-shadow:0 20px 60px #0002}
+    .opening{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;background:#e9e1d8;transition:.7s}.opening.hide{opacity:0;pointer-events:none;transform:scale(1.02)}
+    .invitation{width:min(360px,100%);padding:44px 28px;border:1px solid #d7c8bb;border-radius:30px;background:#fffaf5;text-align:center;box-shadow:0 20px 45px #806b5930}.eyebrow{font-size:10px;letter-spacing:.4em;color:#9b8574}.heart{width:64px;height:64px;margin:30px auto;border-radius:50%;display:grid;place-items:center;background:#aa8d78;color:#fff;font-size:24px}.names{font-size:32px;font-style:italic}.accent{color:#b79d89}.rule{width:96px;height:1px;margin:28px auto;background:#ccb9aa}.date{font-size:13px;letter-spacing:.2em}.hint{margin-top:28px;font-size:11px;color:#9a887a}
+    .music{position:absolute;right:15px;top:15px;z-index:40;width:42px;height:42px;border:0;border-radius:50%;background:#fffffff0;color:#75665b;box-shadow:0 4px 16px #0002;display:none}.music.show{display:block}
+    .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;background:linear-gradient(#ede3da,#faf7f2,#e9eee7)}.heroPhoto{width:235px;height:310px;margin:34px auto;border-radius:120px 120px 24px 24px;background:linear-gradient(135deg,#cbb7a8,#eee6dd,#bac8b7);display:grid;place-items:center;color:#74675d;font-size:12px;line-height:1.8;box-shadow:0 14px 35px #7d68552d}.hero h1{font-size:38px;font-style:italic;font-weight:400;margin:0}.down{position:absolute;bottom:22px;font-size:24px;animation:bob 1.8s infinite}@keyframes bob{50%{transform:translateY(7px)}}
+    .countdown{padding:56px 20px;background:#5c5550;color:#faf5ef;text-align:center}.countdown h2{font-size:24px;font-weight:400;font-style:italic}.countGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:28px}.count{padding:16px 2px;border:1px solid #ffffff26;border-radius:16px;background:#ffffff12}.num{font-size:23px}.label{margin-top:5px;font-size:7px;letter-spacing:.15em;color:#d9cabf}
+    .infoSec{padding:64px 20px;background:#eee7df;text-align:center}.title{font-size:29px;font-style:italic;font-weight:400}.cards{display:grid;gap:12px;margin-top:34px}.card{display:flex;gap:12px;align-items:center;padding:16px;border-radius:18px;background:#fbf8f4;text-align:left;box-shadow:0 3px 12px #0000000d}.icon{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#e8ddd3}.small{font-size:9px;letter-spacing:.15em;color:#a28b78}.value{margin-top:5px;font-size:12px}
+    .rsvp{padding:64px 20px;text-align:center}.rsvp form{text-align:left;margin-top:34px}.field{margin-bottom:16px}.field label{display:block;margin-bottom:8px;font-size:11px;color:#7d6e63}.input{width:100%;padding:13px 14px;border:1px solid #e1d8d0;border-radius:16px;background:#fff;color:#514a44;outline:none}.input:focus{border-color:#aa8b74}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{padding:12px;border:1px solid #e1d8d0;border-radius:16px;background:#fff;color:#8d8076}.choice.active{border-color:#a98b75;background:#eee3da;color:#735f50}.submit{width:100%;margin-top:3px;padding:15px;border:0;border-radius:999px;background:#a68772;color:white;letter-spacing:.12em;box-shadow:0 8px 20px #7e65502b}.submit:disabled{opacity:.55}.error{display:none;margin:12px 0;padding:12px;border-radius:14px;background:#fff0ed;color:#9b554d;font-size:11px}.success{display:none;padding:64px 20px;text-align:center}.successBox{padding:38px 26px;border:1px solid #dfd1c5;border-radius:28px;background:#fff}.check{font-size:42px;color:#93a18d}.success h3{font-size:25px;font-style:italic;font-weight:400}.footer{padding:56px 20px;background:#5c5550;color:#f8f1eb;text-align:center}.footer .names{font-size:29px}.honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}
+    @media(min-width:500px){body{padding:30px 0}.phone{border-radius:28px}}
+  </style>
+</head>
+<body>
+<div class="phone">
+  <div class="opening" id="opening"><button class="invitation" id="openBtn"><div class="eyebrow">WEDDING INVITATION</div><div class="heart">♡</div><div class="names">奕辰 <span class="accent">&</span> 予安</div><div class="rule"></div><div class="date">2027 · 05 · 22</div><div class="hint">輕觸開啟喜帖 ♡</div></button></div>
+  <button class="music" id="musicBtn" aria-label="背景音樂">♫</button>
+  <audio id="bgm" loop preload="none"><source src="music/wedding.mp3" type="audio/mpeg"></audio>
+
+  <section class="hero"><div><div class="eyebrow">WE'RE GETTING MARRIED</div><div class="heroPhoto">婚紗照<br>主視覺示意區</div><h1>奕辰 <span class="accent">&</span> 予安</h1><div class="date" style="margin-top:22px">2027.05.22 · SAT.</div></div><div class="down">⌄</div></section>
+
+  <section class="countdown"><div class="eyebrow" style="color:#d9cabe">COUNTING DOWN TO OUR DAY</div><h2>距離幸福這一天還有</h2><div class="countGrid"><div class="count"><div class="num" id="days">00</div><div class="label">DAYS</div></div><div class="count"><div class="num" id="hours">00</div><div class="label">HOURS</div></div><div class="count"><div class="num" id="minutes">00</div><div class="label">MINS</div></div><div class="count"><div class="num" id="seconds">00</div><div class="label">SECS</div></div></div></section>
+
+  <section class="infoSec"><div class="eyebrow">WEDDING DAY</div><h2 class="title">婚宴資訊</h2><div class="cards"><div class="card"><div class="icon">◷</div><div><div class="small">日期</div><div class="value">2027 年 5 月 22 日｜星期六</div></div></div><div class="card"><div class="icon">◴</div><div><div class="small">時間</div><div class="value">11:30 迎賓｜12:30 開席</div></div></div><div class="card"><div class="icon">⌖</div><div><div class="small">地點</div><div class="value">森語宴會館｜新竹市幸福路 168 號</div></div></div></div></section>
+
+  <section class="rsvp" id="rsvpSec"><div style="font-size:22px;color:#a48872">♡</div><div class="eyebrow" style="margin-top:18px">RSVP</div><h2 class="title">期待與你相見</h2><p style="font-size:12px;line-height:1.9;color:#786b62">請於 2027 年 4 月 15 日前回覆<br>讓我們為你預留幸福的一席 ♡</p>
+    <form id="rsvpForm"><input class="honeypot" id="website" name="website" tabindex="-1" autocomplete="off">
+      <div class="field"><label>您的姓名</label><input class="input" id="name" maxlength="50" required placeholder="請輸入姓名"></div>
+      <div class="field"><label>是否出席</label><div class="choices"><button type="button" class="choice active" data-group="attending" data-value="yes">欣然出席 ♡</button><button type="button" class="choice" data-group="attending" data-value="no">不克出席</button></div></div>
+      <div id="attendingFields"><div class="field"><label>出席人數</label><select class="input" id="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+      <div class="field"><label>餐食需求</label><div class="choices"><button type="button" class="choice active" data-group="meal" data-value="葷食">葷食</button><button type="button" class="choice" data-group="meal" data-value="素食">素食</button></div></div>
+      <div class="field"><label>是否攜帶兒童</label><div class="choices"><button type="button" class="choice active" data-group="child" data-value="否">否</button><button type="button" class="choice" data-group="child" data-value="是">是</button></div></div></div>
+      <div class="field"><label>想對新人說的話</label><textarea class="input" id="message" maxlength="500" rows="3" placeholder="留下你的祝福吧 ♡"></textarea></div><div class="error" id="error"></div><button class="submit" id="submitBtn" type="submit">送出出席回覆 ♡</button>
+    </form>
+  </section>
+
+  <section class="success" id="successSec"><div class="successBox"><div class="check">✓</div><h3>回覆已送出</h3><p id="successText" style="font-size:13px;line-height:2;color:#756a62"></p><button class="choice" id="againBtn" style="margin-top:15px">重新填寫</button></div></section>
+  <footer class="footer"><div class="names">奕辰 & 予安</div><div class="eyebrow" style="margin-top:15px;color:#d8c9bd">THANK YOU FOR BEING PART OF OUR STORY</div></footer>
+</div>
+<script>
+const WEDDING_DATE = new Date('2027-05-22T12:30:00+08:00');
+const RSVP_API = 'https://script.google.com/macros/s/AKfycbyx4kkjJ0kPXVpyk2wzjT-UD_-eydv5caiNaZmbKXl6Mu5CXxVkgti2iXGM6_knkAq_DA/exec';
+const state = { attending:'yes', meal:'葷食', child:'否' };
+const $ = id => document.getElementById(id);
+
+$('openBtn').addEventListener('click', async()=>{ $('opening').classList.add('hide'); $('musicBtn').classList.add('show'); try{await $('bgm').play()}catch(e){} });
+$('musicBtn').addEventListener('click', async()=>{ if($('bgm').paused){try{await $('bgm').play();$('musicBtn').textContent='♫'}catch(e){}}else{$('bgm').pause();$('musicBtn').textContent='♩'} });
+
+document.querySelectorAll('.choice[data-group]').forEach(btn=>btn.addEventListener('click',()=>{ const g=btn.dataset.group; state[g]=btn.dataset.value; document.querySelectorAll(`[data-group="${g}"]`).forEach(x=>x.classList.toggle('active',x===btn)); if(g==='attending') $('attendingFields').style.display=state.attending==='yes'?'block':'none'; }));
+
+function updateCountdown(){ const d=Math.max(0,WEDDING_DATE-Date.now()); $('days').textContent=String(Math.floor(d/86400000)).padStart(2,'0'); $('hours').textContent=String(Math.floor((d%86400000)/3600000)).padStart(2,'0'); $('minutes').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0'); $('seconds').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0'); }
+updateCountdown(); setInterval(updateCountdown,1000);
+
+$('rsvpForm').addEventListener('submit', async e=>{
+  e.preventDefault(); const name=$('name').value.trim(); if(!name){showError('請填寫姓名');return}
+  const btn=$('submitBtn'); btn.disabled=true; btn.textContent='送出中...'; hideError();
+  const payload={name,attending:state.attending,guests:state.attending==='yes'?$('guests').value:'0',meal:state.attending==='yes'?state.meal:'',child:state.attending==='yes'?state.child:'',message:$('message').value.trim(),website:$('website').value};
+  try{
+    await fetch(RSVP_API,{method:'POST',mode:'no-cors',credentials:'omit',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
+    $('rsvpSec').style.display='none'; $('successSec').style.display='block'; $('successText').innerHTML=`謝謝 ${escapeHtml(name)} 的回覆與祝福。<br>${state.attending==='yes'?'期待婚禮當天與你相見 ♡':'謝謝你把祝福送給我們 ♡'}`; $('successSec').scrollIntoView({behavior:'smooth'});
+  }catch(err){showError('送出失敗，請確認網路及 Apps Script 部署權限後再試。');btn.disabled=false;btn.textContent='送出出席回覆 ♡'}
+});
+$('againBtn').addEventListener('click',()=>{$('successSec').style.display='none';$('rsvpSec').style.display='block';$('submitBtn').disabled=false;$('submitBtn').textContent='送出出席回覆 ♡';$('rsvpSec').scrollIntoView({behavior:'smooth'})});
+function showError(t){$('error').textContent=t;$('error').style.display='block'} function hideError(){$('error').style.display='none'} function escapeHtml(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+</script>
+</body>
+</html>
