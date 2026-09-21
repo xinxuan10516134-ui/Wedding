@@ -922,7 +922,7 @@
     </div>
 
     <button class="music" id="musicBtn" aria-label="背景音樂">♫</button>
-    <audio id="bgm" loop preload="none">
+    <audio id="bgm" loop preload="auto">
       <source src="wedding.mp3" type="audio/mpeg" />
     </audio>
 
@@ -1288,18 +1288,20 @@
 
     $('openBtn').addEventListener('click', async () => {
       invitationOpened = true;
+
       startPetalRain();
       $('opening').classList.add('hide');
       musicBtn.classList.add('show');
-      setMusicButtonState(false);
+      bgm.muted = false;
+      bgm.volume = 0.6;
       try {
-        bgm.load();
-        await bgm.play();
-        setMusicButtonState(true);
-      } catch (error) {
-        setMusicButtonState(false);
-      }
-    });
+      await bgm.play();
+      setMusicButtonState(true);
+    } catch (error) {
+    console.log('背景音樂播放失敗：', error);
+    setMusicButtonState(false);
+    }
+  });
 
     window.addEventListener('scroll', handleHeroPetalTrigger, { passive: true });
 
