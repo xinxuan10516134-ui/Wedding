@@ -1080,7 +1080,7 @@
         <div class="centerMark">✦</div>
         <div class="eyebrow" style="margin-top:18px">RSVP</div>
         <h2 class="title">期待與你相見</h2>
-        <p class="sub">請於 2027 年 4 月 15 日前回覆，讓我們為你預留幸福的一席。</p>
+        <p class="sub">請於 2027 年 2 月 15 日前回覆，讓我們為你預留幸福的一席。</p>
       </div>
 
       <form id="rsvpForm">
@@ -1101,30 +1101,41 @@
 
         <div id="attendingFields">
           <div class="field">
-            <label for="guests">出席人數</label>
-            <select class="input" id="guests">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <label>是否攜伴</label>
+            <div class="choices">
+              <button type="button" class="choice active" data-group="companion" data-value="no">單獨出席</button>
+              <button type="button" class="choice" data-group="companion" data-value="yes">我要攜伴</button>
+            </div>
+          </div>
+
+          <div class="field" id="companionCountField" style="display:none">
+            <label for="companionCount">攜伴人數</label>
+            <select class="input" id="companionCount">
+              <option value="1">1 位</option>
+              <option value="2">2 位</option>
+              <option value="3">3 位</option>
+              <option value="4">4 位</option>
+              <option value="5">5 位</option>
             </select>
           </div>
 
           <div class="field">
-            <label>餐食需求</label>
-            <div class="choices">
-              <button type="button" class="choice active" data-group="meal" data-value="葷食">葷食</button>
-              <button type="button" class="choice" data-group="meal" data-value="素食">素食</button>
-            </div>
+            <label for="childSeats">兒童椅需求</label>
+            <select class="input" id="childSeats">
+              <option value="0">不需要</option>
+              <option value="1">需要 1 張</option>
+              <option value="2">需要 2 張</option>
+              <option value="3">需要 3 張</option>
+            </select>
           </div>
 
           <div class="field">
-            <label>是否攜帶兒童</label>
-            <div class="choices">
-              <button type="button" class="choice active" data-group="child" data-value="否">否</button>
-              <button type="button" class="choice" data-group="child" data-value="是">是</button>
-            </div>
+            <label for="parking">停車位需求</label>
+            <select class="input" id="parking">
+              <option value="0">不需要</option>
+              <option value="1">需要 1 個</option>
+              <option value="2">需要 2 個</option>
+            </select>
           </div>
         </div>
 
@@ -1156,8 +1167,8 @@
 
   <script>
     const WEDDING_DATE = new Date('2027-03-21T12:30:00+08:00');
-    const RSVP_API = 'https://script.google.com/macros/s/AKfycbzxkPY_rg7MzLPC92OhWWLzphkdSYNtMLmv1kmMWZBnCvgWx4q7ys3Ykdl3yqpLNwX7EQ/exec';
-    const state = { attending: 'yes', meal: '葷食', child: '否' };
+    const RSVP_API = 'https://script.google.com/macros/s/AKfycbz56h6CJQND_sNSWujrQUYaKT4TxN79HHfb4pushVvgEILe9dzpO4PT2b6o6aVc7qN6OA/exec';
+    const state = { attending: 'yes', companion: 'no' };
     const $ = id => document.getElementById(id);
     const bgm = $('bgm');
     const musicBtn = $('musicBtn');
@@ -1329,6 +1340,9 @@
         if (group === 'attending') {
           $('attendingFields').style.display = state.attending === 'yes' ? 'block' : 'none';
         }
+        if (group === 'companion') {
+          $('companionCountField').style.display = state.companion === 'yes' ? 'block' : 'none';
+        }
       });
     });
 
@@ -1380,9 +1394,13 @@
       const payload = {
         name,
         attending: state.attending,
-        guests: state.attending === 'yes' ? $('guests').value : '0',
-        meal: state.attending === 'yes' ? state.meal : '',
-        child: state.attending === 'yes' ? state.child : '',
+        companion: state.attending === 'yes' ? state.companion : 'no',
+        companionCount:
+          state.attending === 'yes' && state.companion === 'yes'
+            ? $('companionCount').value
+            : '0',
+        childSeats: state.attending === 'yes' ? $('childSeats').value : '0',
+        parking: state.attending === 'yes' ? $('parking').value : '0',
         message: $('message').value.trim(),
         website: $('website').value
       };
